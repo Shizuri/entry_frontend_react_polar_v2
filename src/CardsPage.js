@@ -9,7 +9,7 @@ import MultiSelect from 'react-multi-select-component'
 
 // JSON extracted from the MtG API for faster testing
 // Comment it in with it's useEffect call
-import cardsJson from './cards.json'
+// import cardsJson from './cards.json'
 
 // Constant values that are frozen so that they can't be mutated in any way
 const ALL_CARD_TYPES_OBJECTS = [
