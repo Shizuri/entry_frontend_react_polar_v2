@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './NotFound.css'
 
 const NotFound = () => {
+    useEffect(() => {
+        // Update the document title
+        document.title = 'Page not found'
+    }, [])
+
     return (
         <div className='NotFound'>
-            <h1>Error 404, there is no page here</h1>
+            <h1>Error 404, page not found</h1>
         </div>
     )
 }

@@ -82,48 +82,48 @@ const CardsPage = props => {
     }
 
     // Load cards
-    // useEffect(() => {
-    //     let isMounted = true
+    useEffect(() => {
+        let isMounted = true
 
-    //     const getCards = () => {
-    //         // GET Request.
-    //         fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
-    //             // Handle success
-    //             // Convert to json
-    //             .then(response => {
-    //                 if (isMounted) {
-    //                     return response.json()
-    //                 }
-    //             })
-    //             .then(data => {
-    //                 if (isMounted) {
-    //                     setCards(data.cards) // Set global state cards
-    //                     setFilteredCards(data.cards) // Set filtered cards that will be displayed
-    //                     setLoaded(true) // Cards are loaded
-    //                 }
-    //             })
-    //             // Catch errors
-    //             .catch(error => {
-    //                 if (isMounted) {
-    //                     console.log('Request Failed with error: ', error)
-    //                 }
-    //             })
+        const getCards = () => {
+            // GET Request.
+            fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
+                // Handle success
+                // Convert to json
+                .then(response => {
+                    if (isMounted) {
+                        return response.json()
+                    }
+                })
+                .then(data => {
+                    if (isMounted) {
+                        setCards(data.cards) // Set global state cards
+                        setFilteredCards(data.cards) // Set filtered cards that will be displayed
+                        setLoaded(true) // Cards are loaded
+                    }
+                })
+                // Catch errors
+                .catch(error => {
+                    if (isMounted) {
+                        console.log('Request Failed with error: ', error)
+                    }
+                })
 
-    //     }
+        }
 
-    //     getCards()
-    //     // Set isMounted to false so that the fetch request does not happen
-    //     // This prevents a memory leak scenario on a fast component unmount
-    //     return () => { isMounted = false }
-    // }, [setCards])
+        getCards()
+        // Set isMounted to false so that the fetch request does not happen
+        // This prevents a memory leak scenario on a fast component unmount
+        return () => { isMounted = false }
+    }, [setCards])
 
     // Load cards dummy effect with local JSON
     // Comment the previous useEffect and comment this out for faster testing
-    useEffect(() => {
-        setCards(cardsJson.cards)
-        setFilteredCards(cardsJson.cards)
-        setLoaded(true)
-    }, [setCards])
+    // useEffect(() => {
+    //     setCards(cardsJson.cards)
+    //     setFilteredCards(cardsJson.cards)
+    //     setLoaded(true)
+    // }, [setCards])
 
     // If the name was reset, usually because of a page reload, read it from localStorage
     useEffect(() => {
@@ -132,6 +132,11 @@ const CardsPage = props => {
             setName(localName)
         }
     }, [setName])
+
+    useEffect(() => {
+        // Update the document title
+        document.title = 'MtG Cards Browser'
+    }, [])
 
     // Update cards on filter change
     useEffect(() => {
@@ -223,7 +228,6 @@ const CardsPage = props => {
                         focusSearchOnOpen={false}
                     />
 
-                    <div className='CardsPage-number-of-cards-found'>Cards found: <strong>{filteredCards.length}</strong></div>
                 </div>
 
                 <div className='CardsPage-controls-right-or-bottom-panel'>
@@ -236,12 +240,14 @@ const CardsPage = props => {
                         <option className='CardsPage-sorting-option' value='Ascending'>Ascending</option>
                         <option className='CardsPage-sorting-option' value='Descending'>Descending</option>
                     </select>
-                    <Link className='CardsPage-back-button' to='/'>Home</Link>
-
 
                 </div>
             </div>
 
+            <div className='CardsPage-info-panel'>
+                <div className='CardsPage-number-of-cards-found'>Cards found: <strong>{filteredCards.length}</strong></div>
+                <div className='CardsPage-button-container'><Link className='CardsPage-back-button' to='/'>Home</Link></div>
+            </div>
 
             <div className='CardsPage-cards'>
                 {loaded ? filteredCards.map(card =>

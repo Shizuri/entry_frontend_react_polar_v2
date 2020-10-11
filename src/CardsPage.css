@@ -46,28 +46,6 @@
     font-weight: 400;
 }
 
-.CardsPage-back-button {
-    display: block;
-    text-decoration: none;
-    border: none;
-    background-color: var(--color-accent);
-    color: var(--color-font);
-    height: 30px;
-    line-height: 30px;
-    width: auto;
-    border-radius: 5px;
-    padding: 0 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in, color 0.3s ease-in;
-    text-align: center;
-    font-weight: 500;
-}
-
-.CardsPage-back-button:hover {
-    background-color: var(--color-font);
-    color: var(--color-accent);
-}
-
 .CardsPage-controls-right-or-bottom-panel {
     max-width: 600px;
     display: flex;
@@ -93,7 +71,7 @@
     /* Spacing */
     --rmsc-radius: 5px !important;
     /* Radius */
-    --rmsc-h: 30px !important;
+    --rmsc-h: 28px !important;
     /* Height */
 }
 
@@ -138,5 +116,62 @@
 }
 
 .CardsPage-number-of-cards-found {
+    text-align: center;
+    width: 250px;
     margin-bottom: 20px;
+}
+
+.CardsPage-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+}
+
+.CardsPage-back-button {
+    display: block;
+    text-decoration: none;
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-font);
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.CardsPage-back-button:hover {
+    background-color: var(--color-font);
+    color: var(--color-accent);
+}
+
+.CardsPage-info-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+@media (max-width: 520px) {
+    .CardsPage-info-panel {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* width: 80%; */
+    }
+    .CardsPage-button-container {
+        width: auto;
+        margin-left: 5px;
+    }
+    .CardsPage-number-of-cards-found {
+        width: auto;
+        margin-right: 5px;
+    }
 }

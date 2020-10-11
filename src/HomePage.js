@@ -51,6 +51,12 @@ const HomePage = props => {
 		// Update the use effect only if currentUserNameRef changes and not on every refresh
 	}, [currentUserNameRef])
 
+	useEffect(() => {
+        // Update the document title
+        document.title = 'MtG Home Page'
+    }, [])
+
+
 	return (
 		<div className='HomePage'>
 			<form className='HomePage-form' onSubmit={handleSubmit}>
