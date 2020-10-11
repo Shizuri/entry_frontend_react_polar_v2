@@ -1,0 +1,17 @@
+/* Just a reminder. All css files can access these from index.css */
+/* :root {
+    --color-background: #e5eaf5;
+    --color-font: #494d5f;
+    --color-warning: #d83694;
+    --color-accent: #d0bdf4;
+} */
+
+.NotFound {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--color-font);
+    text-align: center;
+}

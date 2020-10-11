@@ -1,0 +1,60 @@
+/* Just a reminder. All css files can access these from index.css */
+/* :root {
+    --color-background: #e5eaf5;
+    --color-font: #494d5f;
+    --color-warning: #d83694;
+    --color-accent: #d0bdf4;
+} */
+
+.Card{
+    box-sizing: border-box;
+    width: 500px;
+    height: 320px;
+    color: var(--color-font);
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 30px;
+    border-radius: 5px;
+    font-size: 1.0rem;
+}
+
+.Card-image-panel {
+    position: relative;
+    flex: 0 0 223px;
+    height: 100%;
+}
+
+.Card-image {
+    width: 223px;
+}
+
+.Card-data-panel {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+}
+
+.Card-image-not-found {
+    position: absolute;
+    color: var(--color-background);
+    top: 220px;
+    left: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+@media (max-width: 550px) {
+    .Card{
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 30px;
+        border-radius: 5px;
+        font-size: 1.0rem;
+    }
+}

@@ -1,0 +1,111 @@
+/* Just a reminder. All css files can access these from index.css */
+
+/* :root {
+    --color-background: #e5eaf5;
+    --color-font: #494d5f;
+    --color-warning: #d83694;
+    --color-accent: #d0bdf4;
+} */
+
+.HomePage {
+    min-height: 100vh;
+    min-width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--color-font);
+}
+
+.HomePage-name-label {
+    width: auto;
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.HomePage-name-input {
+    box-sizing: border-box;
+    border: 2px solid var(--color-font);
+    border-radius: 5px;
+    width: 400px;
+    height: 46px;
+    color: var(--color-font);
+    padding-left: 5px;
+    /* Firefox needs this or it looks like it's blushing ↓ */
+    box-shadow: none;
+    margin-right: 5px;
+}
+
+.HomePage-name-input:focus {
+    outline: none;
+}
+
+.HomePage-name-input:invalid {
+    background-color: var(--color-background);
+    border: 2px solid var(--color-warning);
+}
+
+.HomePage-name-input:valid {
+    background-color: var(--color-background);
+    border: 2px solid var(--color-font);
+}
+
+.HomePage-name-input::placeholder {
+    /* Don't change any background styling here, it's covered in the two previous rules */
+    /* If you do, the invalid and valid rules start to "leak" from behind */
+    opacity: 0.6;
+}
+
+/* The way that the input field looks when the placeholder is show */
+
+.HomePage-name-input:placeholder-shown {
+    border: 2px solid var(--color-font);
+}
+
+.HomePage-submit-button {
+    border: none;
+    background-color: var(--color-accent);
+    color: var(--color-font);
+    height: 46px;
+    width: auto;
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in, color 0.5s ease-in;
+    margin-left: 5px;
+}
+
+.HomePage-submit-button:hover {
+    background-color: var(--color-font);
+    color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+    .HomePage {
+        font-size: 1.5rem;
+    }
+    .HomePage-name-input {
+        width: 60vw;
+        height: 30px;
+        margin-right: 5px;
+        margin-left: 5px;
+        margin-bottom: 10px;
+    }
+    .HomePage-submit-button {
+        height: 30px;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 260px) {
+    .HomePage-form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .HomePage-name-input {
+        width: 80%;
+    }
+}

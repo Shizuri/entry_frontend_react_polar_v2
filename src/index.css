@@ -1,0 +1,28 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-background: #e5eaf5;
+  --color-font: #494d5f;
+  --color-warning: #d83694;
+  --color-accent: #d0bdf4;
+}
+
+::selection {
+  color: var(--color-background);
+  background: var(--color-font);
+}
+
+body {
+  background-color: var(--color-background);
+  margin: 0;
+  font-family: 'Rajdhani', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 500;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
