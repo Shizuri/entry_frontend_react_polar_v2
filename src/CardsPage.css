@@ -185,7 +185,7 @@
     text-align: center;
 }
 
-/* Style only for Mozilla Firefox */
+/* Style only for Mozilla Firefox since it's the only browser that has issues with the Select horizontal styling*/
 
 @-moz-document url-prefix() {
     .CardsPage-card-type-selector, .CardsPage-card-color-selector {

@@ -1,10 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react'
 import './CardsPage.css'
+import './loadingAnimation.css'
 import { Context } from './context'
 import { Link } from 'react-router-dom'
 import Card from './Card'
 
-import cardsJson from './cards.json' // JSON extracted from the MtG API for faster use
+// JSON extracted from the MtG API for faster testing
+// Comment it in with it's useEffect call
+// import cardsJson from './cards.json'
 
 // Constant values that are frozen so that they can't be mutated in any way
 const ALL_CARD_TYPES = ['Artifact', 'Autobot', 'Card', 'Character', 'Conspiracy', 'Creature', 'Dragon', 'Elemental',
@@ -64,39 +67,56 @@ const CardsPage = props => {
     }
 
     // Load cards
-    // useEffect(() => {
-    //     const getCards = () => {
-    //         // GET Request.
-    //         fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
-    //             // Handle success
-    //             // Convert to json
-    //             .then(response => response.json())
-    //             .then(data => {
+    useEffect(() => {
+        let isMounted = true
 
-    //                 setCards(data.cards) // Set global state cards
-    //                 setFilteredCards(data.cards) // Set filtered cards that will be displayed
-    //                 setLoaded(true) // Cards are loaded
-    //             })
-    //             // Catch errors
-    //             .catch(error => console.log('Request Failed with error: ', error))
-    //     }
-    //     getCards()
+        const getCards = () => {
+            // GET Request.
+            fetch('https://api.magicthegathering.io/v1/cards?random=true&pageSize=100&language=English/')
+                // Handle success
+                // Convert to json
+                .then(response => {
+                    if (isMounted) {
+                        return response.json()
+                    }
+                })
+                .then(data => {
+                    if (isMounted) {
+                        setCards(data.cards) // Set global state cards
+                        setFilteredCards(data.cards) // Set filtered cards that will be displayed
+                        setLoaded(true) // Cards are loaded
+                    }
+                })
+                // Catch errors
+                .catch(error => {
+                    if (isMounted) {
+                        console.log('Request Failed with error: ', error)
+                    }
+                })
+
+        }
+
+        getCards()
+        // Set isMounted to false so that the fetch request does not happen
+        // This prevents a memory leak scenario on a fast component unmount
+        return () => { isMounted = false }
+    }, [setCards])
+
+    // Load cards dummy effect with local JSON
+    // Comment the previous useEffect and comment this out for faster testing
+    // useEffect(() => {
+    //     setCards(cardsJson.cards)
+    //     setFilteredCards(cardsJson.cards)
+    //     setLoaded(true)
     // }, [setCards])
 
     // If the name was reset, usually because of a page reload, read it from localStorage
-    useEffect(() =>{
-		const localName = localStorage.getItem('name')
-		if(localName !== null){
-			setName(localName)
-		}
-    },[setName])
-
-    // Load cards dummy effect with local Json for faster loading
     useEffect(() => {
-        setCards(cardsJson.cards)
-        setFilteredCards(cardsJson.cards)
-        setLoaded(true)
-    }, [setCards])
+        const localName = localStorage.getItem('name')
+        if (localName !== null) {
+            setName(localName)
+        }
+    }, [setName])
 
     // Update cards on filter change
     useEffect(() => {
@@ -208,7 +228,12 @@ const CardsPage = props => {
                         colors={card.colors}
                         imageUrl={card.imageUrl}
                     />)
-                    : 'Loading cards ...'}
+                    :
+                    // Loading animation
+                    <div className='loadingio-spinner-spinner-ssc7g0lctwf'><div className='ldio-9mbi9huikr'>
+                        <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                    </div></div>
+                }
             </div>
         </div>
     )
