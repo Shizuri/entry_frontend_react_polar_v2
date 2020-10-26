@@ -28,6 +28,7 @@
 
 .Card-image {
     width: 223px;
+    border-radius: 9px;
 }
 
 .Card-data-panel {
