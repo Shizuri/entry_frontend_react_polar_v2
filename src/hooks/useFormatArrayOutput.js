@@ -1,3 +1,4 @@
+// IMPORTANT This component was removed after the API rework. Since hooks can't be used conditionally it was transformed into a function inside Card.js
 import React from 'react'
 
 const useFormatArrayOutput = arr => {
